@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<body class="text-center">
+    <br>
+    <div class="text-center">
+        <br>
+<!--        <div class="w-50 p-3">-->
+            <img src="static/cm_logo_sm.png" class="mx-auto d-block" alt="cm logo">
+<!--         </div>-->
+    </div>
+    <br>
+    <br>
+         <!-- Input for spam classifier model using form. -->
+    <div class="container">
+
+        <h1 class="h3 mb-3 font-weight-normal">
+            Enter your email:
+        </h1>
+        <br>
+        <form action="{{ url_for('predict')}}" method="POST">
+            <div class="input-group mb-3 input-group-lg">
+              <input type="text" name="text" id="text" class="form-control" placeholder="Enter text" required="required" aria-label="text" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-info" type="submit" value="Submit" id="button-addon2">Submit</button>
+              </div>
+            </div>
+        </form>
+        <br>
+        <br>
+        <!--  Check if there is input text from user.  -->
+        {% if prediction %}
+            <h1 class="h3 mb-3 font-weight-normal">{{ prediction }}</h1>
+        {% endif %}
+
+    </div>
+
+</body>
+{% endblock %}
